@@ -33,7 +33,7 @@ def image_upload(request):
         # filesize = len(file['content'])
         # filetype = file['content-type']
 
-        upload_to = getattr(settings, 'FROALA_UPLOAD_PATH', 'uploads/froala_editor/images/')
+        upload_to = getattr(settings, 'FROALA_UPLOAD_PATH', 'uploads/froala_editor/images/{}/'.format(request.user))
         path = storage.save(os.path.join(upload_to, the_file.name), the_file)
         link = request.build_absolute_uri(storage.url(path))
 
